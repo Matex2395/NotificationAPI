@@ -1,24 +1,5 @@
-server:
-  port: 8098
-
 spring:
   application:
     name: notification-api
-  mail:
-    host: localhost
-    port: 1025 # Puerto SMTP de Mailpit
-    properties:
-      mail:
-        smtp:
-          auth: false
-          starttls:
-            enable: false
-
-# Configuracion de Resilience4j (Rate Limiting)
-resilience4j:
-  ratelimiter:
-    instances:
-      emailService:
-        limitForPeriod: 5          # Maximo 5 correos...
-        limitRefreshPeriod: 10s     # ...cada 10 segundos
-        timeoutDuration: 0s        # Si esta lleno, se rechaza inmediatamente (No esperar)
+  config:
+    import: "optional:configserver:http://localhost:8888"
